@@ -11,6 +11,17 @@ em PostgreSQL.
 - PostgreSQL 15; Docker Compose para o banco local
 - Maven Wrapper para execução
 
+## Repositório
+
+https://github.com/Arianeslf/biblioteca-comunitaria
+
+Para clonar o projeto:
+
+```bash
+git clone https://github.com/Arianeslf/biblioteca-comunitaria.git
+cd biblioteca-comunitaria
+```
+
 ## Pré-requisitos
 
 Java 21 e Docker com Docker Compose, ou uma instância

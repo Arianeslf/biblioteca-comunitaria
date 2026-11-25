@@ -9,6 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.data.core.PropertyReferenceException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -72,6 +74,19 @@ public class GlobalExceptionHandler {
                 Map.of(
                         "status", 409,
                         "message", "Operação viola uma restrição de integridade dos dados"
+                )
+        );
+    }
+
+    @ExceptionHandler(PropertyReferenceException.class)
+    public ResponseEntity<Map<String, Object>> tratarOrdenacaoInvalida(
+            PropertyReferenceException exception) {
+
+        return ResponseEntity.badRequest().body(
+                Map.of(
+                        "status", 400,
+                        "message", "Campo de ordenação inválido: "
+                                + exception.getPropertyName()
                 )
         );
     }

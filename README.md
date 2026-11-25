@@ -288,6 +288,35 @@ psql -h localhost -p 5432 -U postgres -d postgres -v ON_ERROR_STOP=1 -f dados.sq
 O script utiliza BEGIN e COMMIT e não exclui registros
 preexistentes.
 
+
+
+
+## Exportação CSV
+
+A aplicação disponibiliza um endpoint adicional para
+exportação dos dados consolidados de leitores, livros
+e empréstimos.
+
+```http
+GET /exportacoes/emprestimos
+```
+
+Para realizar o download, acesse:
+
+http://localhost:8080/exportacoes/emprestimos
+
+O arquivo `emprestimos.csv` é gerado em UTF-8 a partir
+dos registros armazenados no PostgreSQL, contemplando
+os dados iniciais e as inclusões e alterações realizadas
+pela API.
+
+Cada linha representa um empréstimo, com os respectivos
+dados do leitor e do livro.
+
+A exportação não possui paginação e disponibiliza os
+dados em uma estrutura adequada para análise no
+Google Looker Studio.
+
 ## Testes
 
 As funcionalidades foram verificadas manualmente com

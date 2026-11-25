@@ -13,8 +13,10 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import java.util.Optional;
+
 
 @Repository
 public interface EmprestimoRepository extends
@@ -38,4 +40,7 @@ public interface EmprestimoRepository extends
     Optional<Emprestimo> buscarPorIdComBloqueio(
             @Param("id") Integer id
     );
+
+    @EntityGraph(attributePaths = {"leitor", "livro"})
+    List<Emprestimo> findAllByOrderByIdAsc();
 }
